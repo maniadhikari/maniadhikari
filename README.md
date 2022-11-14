@@ -3,7 +3,7 @@
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=maniadhikari&label=Profile%20views&color=0e75b6&style=flat" alt="maniadhikari" /> </p>
 
-<p align="left"> <a href="https://twitter.com/maniadhikarii" target="blank"><img src="https://img.shields.io/twitter/follow/iammaniadhikari?logo=twitter&style=for-the-badge" alt="iammaniadhikari" /></a> </p>
+<p align="left"> <a href="https://twitter.com/maniadhikarii" target="blank"><img src="https://img.shields.io/twitter/follow/maniadhikarii?logo=twitter&style=for-the-badge" alt="maniadhikarii" /></a> </p>
 
 - 🔭 I’m currently working on [my own portfolio](https://maniadhikari.github.io/)
 
@@ -17,7 +17,7 @@
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
-<a href="https://twitter.com/maniadhikarii" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="iammaniadhikari" height="30" width="40" /></a>
+<a href="https://twitter.com/maniadhikarii" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="maniadhikarii" height="30" width="40" /></a>
 <a href="https://linkedin.com/in/https://www.linkedin.com/in/maniadhikari/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="https://www.linkedin.com/in/maniadhikari/" height="30" width="40" /></a>
 </p>
 
