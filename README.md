@@ -1,5 +1,5 @@
 # 🗿 About Me:
-Hey! I'm Manikanta. I am a designer and developer with a passion for creating and problem solving. When I'm not coding or designing, you can find me sipping on a hot cup of coffee. Check out my work on GitHub to see what I've been up to.<br><br>🔭 I’m currently working on my own portfolio https://maniadhikari.github.io/<br>👯 I’m looking to collaborate on Open Source Projects<br>🌱 I’m currently learning JavaScript and Blockchain<br>💬 Ask me about goals and planned projects<br>📫 How to reach me iammaniadhikari@gmail.com
+Hey! I'm Manikanta. I am a Designer and developer by trade, problem solver by nature. When I'm not coding or designing, you can find me sipping on a hot cup of coffee. Check out my work on GitHub to see what I've been up to.<br><br>🔭 I’m currently working on my own portfolio https://maniadhikari.github.io/<br>👯 I’m looking to collaborate on Open Source Projects<br>🌱 I’m currently learning JavaScript and Blockchain<br>💬 Ask me about goals and planned projects<br>📫 How to reach me iammaniadhikari@gmail.com
 
 
 ## 🌐 Socials:
