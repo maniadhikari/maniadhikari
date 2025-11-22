@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>labs.maniadhikari.com - Coming Soon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --cyan: #00d9ff;
+  --purple: #8a2be2;
+  --blue: #0000ff;
+  --font-family: 'Inter Tight', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.left-panel {
+  flex: 1;
+  padding: 4rem 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5); /* Slight transparency for overlap */
+  backdrop-filter: blur(10px); /* Premium feel */
+}
+
+.right-panel {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* Video Background */
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: black;
+}
+
+
+/* Content Styling */
+h1 {
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.highlight {
+  color: #ffffff;
+}
+
+p.subtitle {
+  font-size: 1.25rem;
+  color: #a1a1a1;
+  margin-bottom: 3rem;
+  max-width: 500px;
+}
+
+.form-container {
+  margin-bottom: 3rem;
+  max-width: 500px;
+}
+
+.subscribe-form {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+}
+
+input[type="email"] {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border-radius: 200px;
+  border: 1px solid #333;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input[type="email"]:focus {
+  border-color: var(--cyan);
+}
+
+.btn-submit {
+  padding: 1rem 2rem;
+  border-radius: 200px;
+  border: none;
+  background: #ffffff;
+  color: #000000;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  white-space: nowrap;
+}
+
+.btn-submit:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+.success-message {
+  display: none;
+  font-size: 1.1rem;
+  color: var(--cyan);
+  font-weight: 600;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.social-proof {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.avatars {
+  display: flex;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid var(--bg-color);
+  background-color: #333;
+  margin-left: -15px;
+  /* Placeholder images or gradients */
+  background-image: linear-gradient(45deg, #555, #777);
+}
+.avatar:first-child { margin-left: 0; }
+
+.proof-text {
+  font-size: 0.9rem;
+  color: #a1a1a1;
+  font-weight: 500;
+}
+
+.footer {
+  margin-top: 4rem;
+  font-size: 0.9rem;
+  color: #a1a1a1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer a {
+  color: #a1a1a1;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  h1 { font-size: 3rem; }
+  .left-panel { padding: 3rem 4rem; }
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+    height: auto;
+  }
+  .container {
+    flex-direction: column-reverse;
+  }
+  .left-panel {
+    padding: 3rem 2rem;
+    min-height: auto;
+  }
+  .right-panel {
+    height: 50vh;
+    min-height: 300px;
+  }
+  h1 { font-size: 2.5rem; }
+  p.subtitle { font-size: 1.1rem; }
+  .subscribe-form {
+    flex-direction: column;
+  }
+  .btn-submit {
+    width: 100%;
+  }
+  .footer {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .footer .links {
+    margin-left: 0;
+  }
+  .footer a:first-child {
+    margin-left: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="left-panel">
+    <header style="margin-bottom: auto;">
+      <div style="font-weight: 700; font-size: 1.5rem; color: #ffffff;">labs.</div>
+    </header>
+    <main>
+      <h1>
+        <span class="highlight">Free Webflow tools</span><br>
+        and experiments<br>
+        <span class="highlight">launching sooner</span><br>
+        than you think.
+      </h1>
+      <p class="subtitle">Join the waitlist to get early access to a new collection of powerful Webflow resources.</p>
+
+      <div class="form-container">
+        <form class="subscribe-form" id="waitlist-form">
+          <input type="email" id="email-input" placeholder="your@email.com" required>
+          <button type="submit" class="btn-submit">Join Waitlist</button>
+        </form>
+        <div class="success-message" id="success-message">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          You're on the list! We'll be in touch soon.
+        </div>
+      </div>
+
+      <div class="social-proof">
+        <div class="avatars">
+          <div class="avatar"></div>
+          <div class="avatar"></div>
+          <div class="avatar"></div>
+          <div class="avatar" style="display: flex; justify-content: center; align-items: center; background: #333; color: #fff; font-size: 0.8rem; font-weight: 600;">+</div>
+        </div>
+        <p class="proof-text">Over <span id="join-count">0</span>+ developers have already joined</p>
+      </div>
+    </main>
+    <footer class="footer">
+      <div>Built by Mani Adhikari</div>
+      <div class="links">
+        <a href="#" target="_blank">Twitter</a>
+        <a href="#" target="_blank">GitHub</a>
+        <a href="#" target="_blank">LinkedIn</a>
+      </div>
+    </footer>
+  </div>
+  <div class="right-panel">
+    <video class="video-background" autoplay loop muted playsinline>
+      <source src="attached_assets/18069803-sd_540_960_24fps_1763792725644.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('waitlist-form');
+    const emailInput = document.getElementById('email-input');
+    const successMessage = document.getElementById('success-message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailInput.value;
+
+      // Basic email validation
+      if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+        alert('Please enter a valid email address.');
+        emailInput.focus();
+        return;
+      }
+
+      // Create hidden iframe to submit to Tally
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.name = 'tally-hidden-frame';
+      document.body.appendChild(iframe);
+
+      // Create a temporary form to submit to Tally
+      const tallyForm = document.createElement('form');
+      tallyForm.action = 'https://tally.so/r/RGGe4d';
+      tallyForm.method = 'POST';
+      tallyForm.target = 'tally-hidden-frame';
+
+      // Add email field
+      const emailField = document.createElement('input');
+      emailField.type = 'hidden';
+      emailField.name = 'email';
+      emailField.value = email;
+      tallyForm.appendChild(emailField);
+
+      // Submit the form
+      document.body.appendChild(tallyForm);
+      tallyForm.submit();
+      
+      // Clean up
+      setTimeout(() => {
+        document.body.removeChild(tallyForm);
+      }, 1000);
+
+      // Show success message
+      form.style.display = 'none';
+      successMessage.style.display = 'flex';
+    });
+  });
+</script>
+
+</body>
+</html>
