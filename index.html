@@ -97,7 +97,6 @@ input[type="email"] {
   border: 1px solid #333;
   background: rgba(255, 255, 255, 0.05);
   color: var(--text-color);
-  font-family: var(--font-family);
   font-size: 1rem;
   outline: none;
 }
@@ -230,18 +229,18 @@ input[type="email"]:focus { border-color: var(--orange); }
 </div>
 
 <script>
+// Submit to Tally using hidden form (no CORS issues)
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('waitlist-form');
   const emailInput = document.getElementById('email-input');
   const successMessage = document.getElementById('success-message');
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = emailInput.value;
 
     if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
       alert('Please enter a valid email address.');
-      emailInput.focus();
       return;
     }
 
@@ -249,27 +248,61 @@ document.addEventListener('DOMContentLoaded', () => {
     submitButton.disabled = true;
     submitButton.textContent = 'Submitting...';
 
-    try {
-      await fetch('https://tally.so/forms/RGGe4d/submissions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          responses: {
-            "6a5262fc-4c6e-4ea2-92e6-3236a3a2b533": email
-          }
-        })
-      });
+    const tallyForm = document.createElement('form');
+    tallyForm.action = 'https://tally.so/r/RGGe4d';
+    tallyForm.method = 'POST';
+    tallyForm.style.display = 'none';
 
-      form.style.display = 'none';
-      successMessage.style.display = 'flex';
+    const emailField = document.createElement('input');
+    emailField.type = 'hidden';
+    emailField.name = '6a5262fc-4c6e-4ea2-92e6-3236a3a2b533';
+    emailField.value = email;
+    tallyForm.appendChild(emailField);
 
-    } catch (error) {
-      alert('Something went wrong. Try again.');
-      submitButton.disabled = false;
-      submitButton.textContent = 'Join Waitlist';
-    }
+    document.body.appendChild(tallyForm);
+    tallyForm.submit();
+
+    form.style.display = 'none';
+    successMessage.style.display = 'flex';
+
+    setTimeout(() => { tallyForm.remove(); }, 3000);
   });
 });
+
+// Live join count using CSV export
+async function fetchJoinCount() {
+  const countElem = document.getElementById('join-count');
+
+  try {
+    const res = await fetch("https://tally.so/forms/RGGe4d/responses/export.csv");
+    const csv = await res.text();
+
+    const rows = csv.trim().split("\n");
+    const total = rows.length - 1; // minus header
+
+    animateCount(countElem, total);
+
+  } catch (error) {
+    console.log("Couldn’t load real count, fallback applied.");
+    animateCount(countElem, 120); // fallback number
+  }
+}
+
+function animateCount(el, target) {
+  let current = 0;
+  const step = Math.ceil(target / 60);
+
+  const counter = setInterval(() => {
+    current += step;
+    if (current >= target) {
+      current = target;
+      clearInterval(counter);
+    }
+    el.textContent = current;
+  }, 15);
+}
+
+fetchJoinCount();
 </script>
 
 </body>
