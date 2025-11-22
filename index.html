@@ -7,13 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 :root {
   --bg-color: #000000;
   --text-color: #ffffff;
-  --cyan: #00d9ff;
-  --purple: #8a2be2;
-  --blue: #0000ff;
+  --orange: #F26207;
   --font-family: 'Inter Tight', sans-serif;
 }
 
@@ -46,8 +45,8 @@ body {
   flex-direction: column;
   justify-content: center;
   z-index: 10;
-  background: rgba(0, 0, 0, 0.5); /* Slight transparency for overlap */
-  backdrop-filter: blur(10px); /* Premium feel */
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
 }
 
 .right-panel {
@@ -55,7 +54,6 @@ body {
   position: relative;
   overflow: hidden;
 }
-
 
 /* Video Background */
 .video-background {
@@ -68,8 +66,7 @@ body {
   background: black;
 }
 
-
-/* Content Styling */
+/* Content */
 h1 {
   font-size: 4rem;
   font-weight: 600;
@@ -77,10 +74,7 @@ h1 {
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
 }
-
-.highlight {
-  color: #ffffff;
-}
+.highlight { color: #ffffff; }
 
 p.subtitle {
   font-size: 1.25rem;
@@ -89,15 +83,11 @@ p.subtitle {
   max-width: 500px;
 }
 
-.form-container {
-  margin-bottom: 3rem;
-  max-width: 500px;
-}
+.form-container { margin-bottom: 3rem; max-width: 500px; }
 
 .subscribe-form {
   display: flex;
   gap: 1rem;
-  position: relative;
 }
 
 input[type="email"] {
@@ -110,12 +100,8 @@ input[type="email"] {
   font-family: var(--font-family);
   font-size: 1rem;
   outline: none;
-  transition: border-color 0.3s;
 }
-
-input[type="email"]:focus {
-  border-color: var(--cyan);
-}
+input[type="email"]:focus { border-color: var(--orange); }
 
 .btn-submit {
   padding: 1rem 2rem;
@@ -123,14 +109,11 @@ input[type="email"]:focus {
   border: none;
   background: #ffffff;
   color: #000000;
-  font-family: var(--font-family);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-  white-space: nowrap;
 }
-
 .btn-submit:hover {
   background-color: #f0f0f0;
   transform: translateY(-2px);
@@ -139,7 +122,7 @@ input[type="email"]:focus {
 .success-message {
   display: none;
   font-size: 1.1rem;
-  color: var(--cyan);
+  color: var(--orange);
   font-weight: 600;
   align-items: center;
   gap: 0.5rem;
@@ -152,27 +135,25 @@ input[type="email"]:focus {
   margin-top: auto;
 }
 
-.avatars {
-  display: flex;
-}
-
+.avatars { display: flex; }
 .avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: 3px solid var(--bg-color);
-  background-color: #333;
+  background: linear-gradient(45deg, #555, #777);
   margin-left: -15px;
-  /* Placeholder images or gradients */
-  background-image: linear-gradient(45deg, #555, #777);
 }
 .avatar:first-child { margin-left: 0; }
-
-.proof-text {
-  font-size: 0.9rem;
-  color: #a1a1a1;
-  font-weight: 500;
+.avatar:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff; font-size: 0.8rem; font-weight: 600;
+  background: #333;
 }
+
+.proof-text { color: #a1a1a1; font-size: 0.9rem; font-weight: 500; }
 
 .footer {
   margin-top: 4rem;
@@ -180,61 +161,20 @@ input[type="email"]:focus {
   color: #a1a1a1;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
-
-.footer a {
-  color: #a1a1a1;
-  text-decoration: none;
-  margin-left: 1.5rem;
-  transition: color 0.3s;
-}
-
-.footer a:hover {
-  color: #ffffff;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  h1 { font-size: 3rem; }
-  .left-panel { padding: 3rem 4rem; }
-}
+.footer a { color: #a1a1a1; text-decoration: none; margin-left: 1.5rem; }
+.footer a:hover { color: #ffffff; }
 
 @media (max-width: 768px) {
-  body {
-    overflow: auto;
-    height: auto;
-  }
-  .container {
-    flex-direction: column-reverse;
-  }
-  .left-panel {
-    padding: 3rem 2rem;
-    min-height: auto;
-  }
-  .right-panel {
-    height: 50vh;
-    min-height: 300px;
-  }
+  body { overflow: auto; height: auto; }
+  .container { flex-direction: column-reverse; }
+  .left-panel { padding: 3rem 2rem; }
+  .right-panel { height: 50vh; min-height: 300px; }
   h1 { font-size: 2.5rem; }
   p.subtitle { font-size: 1.1rem; }
-  .subscribe-form {
-    flex-direction: column;
-  }
-  .btn-submit {
-    width: 100%;
-  }
-  .footer {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-  .footer .links {
-    margin-left: 0;
-  }
-  .footer a:first-child {
-    margin-left: 0;
-  }
+  .subscribe-form { flex-direction: column; }
+  .btn-submit { width: 100%; }
+  .footer { flex-direction: column; gap: 1rem; align-items: flex-start; }
 }
 </style>
 </head>
@@ -260,194 +200,77 @@ input[type="email"]:focus {
           <button type="submit" class="btn-submit">Join Waitlist</button>
         </form>
         <div class="success-message" id="success-message">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
           You're on the list! We'll be in touch soon.
         </div>
       </div>
 
       <div class="social-proof">
         <div class="avatars">
-          <div class="avatar"></div>
-          <div class="avatar"></div>
-          <div class="avatar"></div>
-          <div class="avatar" style="display: flex; justify-content: center; align-items: center; background: #333; color: #fff; font-size: 0.8rem; font-weight: 600;">+</div>
+          <div class="avatar"></div><div class="avatar"></div><div class="avatar"></div>
+          <div class="avatar">+</div>
         </div>
         <p class="proof-text">Over <span id="join-count">0</span>+ developers have already joined</p>
       </div>
     </main>
+
     <footer class="footer">
       <div>Built by Mani Adhikari</div>
       <div class="links">
-        <a href="#" target="_blank">Twitter</a>
-        <a href="#" target="_blank">GitHub</a>
-        <a href="#" target="_blank">LinkedIn</a>
+        <a href="#">Twitter</a><a href="#">GitHub</a><a href="#">LinkedIn</a>
       </div>
     </footer>
   </div>
+
   <div class="right-panel">
     <video class="video-background" autoplay loop muted playsinline preload="auto">
       <source src="18069803-sd_540_960_24fps_1763792725644.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
   </div>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Ensure video plays automatically
-    const video = document.querySelector('.video-background');
-    if (video) {
-      video.play().catch(error => {
-        // If autoplay fails, try again after user interaction
-        console.log('Autoplay prevented, will play on interaction');
-        const playVideo = () => {
-          video.play();
-          document.removeEventListener('click', playVideo);
-          document.removeEventListener('touchstart', playVideo);
-        };
-        document.addEventListener('click', playVideo);
-        document.addEventListener('touchstart', playVideo);
-      });
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('waitlist-form');
+  const emailInput = document.getElementById('email-input');
+  const successMessage = document.getElementById('success-message');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = emailInput.value;
+
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      alert('Please enter a valid email address.');
+      emailInput.focus();
+      return;
     }
 
-    const form = document.getElementById('waitlist-form');
-    const emailInput = document.getElementById('email-input');
-    const successMessage = document.getElementById('success-message');
+    const submitButton = form.querySelector('.btn-submit');
+    submitButton.disabled = true;
+    submitButton.textContent = 'Submitting...';
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = emailInput.value;
-
-      // Basic email validation
-      if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
-        alert('Please enter a valid email address.');
-        emailInput.focus();
-        return;
-      }
-
-      // Disable form during submission
-      const submitButton = form.querySelector('.btn-submit');
-      const originalButtonText = submitButton.textContent;
-      submitButton.disabled = true;
-      submitButton.textContent = 'Submitting...';
-
-      // Method: Load Tally form in hidden iframe and automate submission
-      // This is a pure client-side solution, no APIs exposed
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.style.width = '1px';
-      iframe.style.height = '1px';
-      iframe.style.border = 'none';
-      iframe.style.position = 'absolute';
-      iframe.style.left = '-9999px';
-      iframe.style.opacity = '0';
-      iframe.name = 'tally-automation-frame';
-      document.body.appendChild(iframe);
-
-      let submissionSuccess = false;
-
-      // Function to automate form submission inside iframe
-      const automateTallySubmission = () => {
-        try {
-          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-          
-          // Find the email input field by its ID
-          const emailInputField = iframeDoc.getElementById('6a5262fc-4c6e-4ea2-92e6-3236a3a2b533');
-          
-          if (emailInputField) {
-            // Set the email value
-            emailInputField.value = email;
-            emailInputField.dispatchEvent(new Event('input', { bubbles: true }));
-            emailInputField.dispatchEvent(new Event('change', { bubbles: true }));
-            
-            // Find and click the submit button
-            const submitBtn = iframeDoc.querySelector('button[type="submit"]') || 
-                             iframeDoc.querySelector('input[type="submit"]') ||
-                             iframeDoc.querySelector('button:not([type])') ||
-                             iframeDoc.querySelector('[data-sentry-element="Button"]');
-            
-            if (submitBtn) {
-              // Wait a bit for form to process the input
-              setTimeout(() => {
-                submitBtn.click();
-                submissionSuccess = true;
-                
-                // Show success message
-                form.style.display = 'none';
-                successMessage.style.display = 'flex';
-                
-                // Clean up after delay
-                setTimeout(() => {
-                  if (document.body.contains(iframe)) {
-                    document.body.removeChild(iframe);
-                  }
-                }, 2000);
-              }, 500);
-              return;
-            }
+    try {
+      await fetch('https://tally.so/forms/RGGe4d/submissions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          responses: {
+            "6a5262fc-4c6e-4ea2-92e6-3236a3a2b533": email
           }
-        } catch (error) {
-          // CORS restriction - fall back to form POST method
-          console.log('CORS restriction detected, using form POST fallback');
-          useFormPostMethod();
-        }
-      };
+        })
+      });
 
-      // Fallback: Direct form POST submission
-      const useFormPostMethod = () => {
-        const tallyForm = document.createElement('form');
-        tallyForm.action = 'https://tally.so/r/RGGe4d';
-        tallyForm.method = 'POST';
-        tallyForm.target = 'tally-automation-frame';
-        tallyForm.style.display = 'none';
-        tallyForm.enctype = 'application/x-www-form-urlencoded';
-        tallyForm.acceptCharset = 'UTF-8';
+      form.style.display = 'none';
+      successMessage.style.display = 'flex';
 
-        // Add email field using the Tally field ID
-        const emailField = document.createElement('input');
-        emailField.type = 'hidden';
-        emailField.name = '6a5262fc-4c6e-4ea2-92e6-3236a3a2b533';
-        emailField.value = email;
-        tallyForm.appendChild(emailField);
-
-        document.body.appendChild(tallyForm);
-        tallyForm.submit();
-        
-        submissionSuccess = true;
-        form.style.display = 'none';
-        successMessage.style.display = 'flex';
-
-        setTimeout(() => {
-          if (document.body.contains(tallyForm)) {
-            document.body.removeChild(tallyForm);
-          }
-          if (document.body.contains(iframe)) {
-            document.body.removeChild(iframe);
-          }
-        }, 3000);
-      };
-
-      // Load Tally form in iframe
-      iframe.src = 'https://tally.so/r/RGGe4d';
-      
-      // Wait for iframe to load, then automate
-      iframe.onload = () => {
-        // Give the form a moment to fully render
-        setTimeout(() => {
-          automateTallySubmission();
-        }, 1000);
-      };
-
-      // Fallback timeout - if iframe doesn't load or automation fails
-      setTimeout(() => {
-        if (!submissionSuccess) {
-          useFormPostMethod();
-        }
-      }, 3000);
-    });
+    } catch (error) {
+      alert('Something went wrong. Try again.');
+      submitButton.disabled = false;
+      submitButton.textContent = 'Join Waitlist';
+    }
   });
+});
 </script>
 
 </body>
 </html>
-
