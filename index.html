@@ -285,14 +285,31 @@ input[type="email"]:focus {
     </footer>
   </div>
   <div class="right-panel">
-    <video class="video-background" autoplay loop muted playsinline>
-      <source src="attached_assets/18069803-sd_540_960_24fps_1763792725644.mp4" type="video/mp4">
+    <video class="video-background" autoplay loop muted playsinline preload="auto">
+      <source src="18069803-sd_540_960_24fps_1763792725644.mp4" type="video/mp4">
+      Your browser does not support the video tag.
     </video>
   </div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // Ensure video plays automatically
+    const video = document.querySelector('.video-background');
+    if (video) {
+      video.play().catch(error => {
+        // If autoplay fails, try again after user interaction
+        console.log('Autoplay prevented, will play on interaction');
+        const playVideo = () => {
+          video.play();
+          document.removeEventListener('click', playVideo);
+          document.removeEventListener('touchstart', playVideo);
+        };
+        document.addEventListener('click', playVideo);
+        document.addEventListener('touchstart', playVideo);
+      });
+    }
+
     const form = document.getElementById('waitlist-form');
     const emailInput = document.getElementById('email-input');
     const successMessage = document.getElementById('success-message');
@@ -308,40 +325,129 @@ input[type="email"]:focus {
         return;
       }
 
-      // Create hidden iframe to submit to Tally
+      // Disable form during submission
+      const submitButton = form.querySelector('.btn-submit');
+      const originalButtonText = submitButton.textContent;
+      submitButton.disabled = true;
+      submitButton.textContent = 'Submitting...';
+
+      // Method: Load Tally form in hidden iframe and automate submission
+      // This is a pure client-side solution, no APIs exposed
       const iframe = document.createElement('iframe');
       iframe.style.display = 'none';
-      iframe.name = 'tally-hidden-frame';
+      iframe.style.width = '1px';
+      iframe.style.height = '1px';
+      iframe.style.border = 'none';
+      iframe.style.position = 'absolute';
+      iframe.style.left = '-9999px';
+      iframe.style.opacity = '0';
+      iframe.name = 'tally-automation-frame';
       document.body.appendChild(iframe);
 
-      // Create a temporary form to submit to Tally
-      const tallyForm = document.createElement('form');
-      tallyForm.action = 'https://tally.so/r/RGGe4d';
-      tallyForm.method = 'POST';
-      tallyForm.target = 'tally-hidden-frame';
+      let submissionSuccess = false;
 
-      // Add email field
-      const emailField = document.createElement('input');
-      emailField.type = 'hidden';
-      emailField.name = 'email';
-      emailField.value = email;
-      tallyForm.appendChild(emailField);
+      // Function to automate form submission inside iframe
+      const automateTallySubmission = () => {
+        try {
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+          
+          // Find the email input field by its ID
+          const emailInputField = iframeDoc.getElementById('6a5262fc-4c6e-4ea2-92e6-3236a3a2b533');
+          
+          if (emailInputField) {
+            // Set the email value
+            emailInputField.value = email;
+            emailInputField.dispatchEvent(new Event('input', { bubbles: true }));
+            emailInputField.dispatchEvent(new Event('change', { bubbles: true }));
+            
+            // Find and click the submit button
+            const submitBtn = iframeDoc.querySelector('button[type="submit"]') || 
+                             iframeDoc.querySelector('input[type="submit"]') ||
+                             iframeDoc.querySelector('button:not([type])') ||
+                             iframeDoc.querySelector('[data-sentry-element="Button"]');
+            
+            if (submitBtn) {
+              // Wait a bit for form to process the input
+              setTimeout(() => {
+                submitBtn.click();
+                submissionSuccess = true;
+                
+                // Show success message
+                form.style.display = 'none';
+                successMessage.style.display = 'flex';
+                
+                // Clean up after delay
+                setTimeout(() => {
+                  if (document.body.contains(iframe)) {
+                    document.body.removeChild(iframe);
+                  }
+                }, 2000);
+              }, 500);
+              return;
+            }
+          }
+        } catch (error) {
+          // CORS restriction - fall back to form POST method
+          console.log('CORS restriction detected, using form POST fallback');
+          useFormPostMethod();
+        }
+      };
 
-      // Submit the form
-      document.body.appendChild(tallyForm);
-      tallyForm.submit();
+      // Fallback: Direct form POST submission
+      const useFormPostMethod = () => {
+        const tallyForm = document.createElement('form');
+        tallyForm.action = 'https://tally.so/r/RGGe4d';
+        tallyForm.method = 'POST';
+        tallyForm.target = 'tally-automation-frame';
+        tallyForm.style.display = 'none';
+        tallyForm.enctype = 'application/x-www-form-urlencoded';
+        tallyForm.acceptCharset = 'UTF-8';
+
+        // Add email field using the Tally field ID
+        const emailField = document.createElement('input');
+        emailField.type = 'hidden';
+        emailField.name = '6a5262fc-4c6e-4ea2-92e6-3236a3a2b533';
+        emailField.value = email;
+        tallyForm.appendChild(emailField);
+
+        document.body.appendChild(tallyForm);
+        tallyForm.submit();
+        
+        submissionSuccess = true;
+        form.style.display = 'none';
+        successMessage.style.display = 'flex';
+
+        setTimeout(() => {
+          if (document.body.contains(tallyForm)) {
+            document.body.removeChild(tallyForm);
+          }
+          if (document.body.contains(iframe)) {
+            document.body.removeChild(iframe);
+          }
+        }, 3000);
+      };
+
+      // Load Tally form in iframe
+      iframe.src = 'https://tally.so/r/RGGe4d';
       
-      // Clean up
-      setTimeout(() => {
-        document.body.removeChild(tallyForm);
-      }, 1000);
+      // Wait for iframe to load, then automate
+      iframe.onload = () => {
+        // Give the form a moment to fully render
+        setTimeout(() => {
+          automateTallySubmission();
+        }, 1000);
+      };
 
-      // Show success message
-      form.style.display = 'none';
-      successMessage.style.display = 'flex';
+      // Fallback timeout - if iframe doesn't load or automation fails
+      setTimeout(() => {
+        if (!submissionSuccess) {
+          useFormPostMethod();
+        }
+      }, 3000);
     });
   });
 </script>
 
 </body>
 </html>
+
